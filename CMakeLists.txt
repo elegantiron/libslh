@@ -4,12 +4,12 @@ project(
     VERSION 0.0.1
     LANGUAGES CXX
 )
-add_library(${PROJECT_NAME} SHARED)
-# set_target_properties(
-#     ${PROJECT_NAME}
-#     PROPERTIES
-#     OUTPUT_NAME "slh"
-# )
+add_library(${PROJECT_NAME})
+set_target_properties(
+    ${PROJECT_NAME}
+    PROPERTIES
+    OUTPUT_NAME "slh"
+)
 target_compile_features(
     ${PROJECT_NAME}
     PRIVATE
@@ -22,8 +22,7 @@ target_include_directories(
     PRIVATE
     "${CMAKE_CURRENT_SOURCE_DIR}/inc-priv"
 )
-find_package(SFML 3.0.2 COMPONENTS Graphics CONFIG REQUIRED)
-find_package(Boost 1.84 COMPONENTS locale REQUIRED)
+find_package(Boost 1.83 COMPONENTS locale REQUIRED)
 target_link_libraries(
     ${PROJECT_NAME}
     PUBLIC
@@ -38,3 +37,4 @@ target_sources(
     "${CMAKE_CURRENT_SOURCE_DIR}/src/Engine/SceneManager.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/Utils/Menu.cpp"
 )
+find_package(Doxygen)
