@@ -1,13 +1,14 @@
 #pragma once
 
 #include <SFML/Graphics/Color.hpp>
+#include <SFML/Graphics/Drawable.hpp>
 #include <SFML/Graphics/Font.hpp>
 #include <SFML/Graphics/RenderStates.hpp>
 #include <SFML/Graphics/RenderTarget.hpp>
 #include <SFML/Graphics/Text.hpp>
 
 namespace libslh {
-    class Menu {
+    class Menu : public sf::Drawable {
         std::vector<sf::Text> _items;
         sf::Font              _font;
         unsigned int          _defaultCharacterSize;
@@ -39,6 +40,7 @@ namespace libslh {
              float        selectedOutlineThickness,
              sf::Color    selectedOutlineColor);
         void addItem(const sf::String& line);
-        void draw(sf::RenderTarget& target, sf::RenderStates states) const;
+        void draw(sf::RenderTarget& target,
+                  sf::RenderStates  states) const override;
     };
 }

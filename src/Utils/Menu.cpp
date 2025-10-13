@@ -56,4 +56,10 @@ namespace libslh {
           _selectedFillColor(selectedFillColor),
           _selectedOutlineThickness(selectedOutlineThickness),
           _selectedOutlineColor(selectedOutlineColor) {}
+
+    void Menu::draw(sf::RenderTarget& target, sf::RenderStates states) const {
+        for (auto item : _items) {
+            target.draw(item);
+        }
+    }
 }
