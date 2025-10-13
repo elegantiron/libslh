@@ -9,6 +9,10 @@
 #include <optional>
 
 namespace libslh::Engine {
+    /**
+     * @brief Control center for running a game.
+     * 
+     */
     class Core {
         static Core*             _instance;
         sf::RenderWindow         _window;
@@ -47,8 +51,13 @@ namespace libslh::Engine {
         std::basic_string<char> localize(
             const boost::locale::basic_message<char>& string);
 
-        template <typename T>
-            requires std::integral<T> || std::floating_point<T>
+            /**
+             * @brief Return a random number of type T
+             * 
+             * @tparam T 
+             * @return T 
+             */
+        template <typename T> requires std::integral<T> || std::floating_point<T>
         T next() {
             return next(std::numeric_limits<T>::min(),
                         std::numeric_limits<T>::max());
