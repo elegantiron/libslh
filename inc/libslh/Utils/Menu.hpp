@@ -19,6 +19,7 @@ namespace libslh {
         sf::Vector2f          _position{0, 0};
 
         void updateIndex(int delta);
+        void arrange();
 
     public:
         Menu(Font defaultFace, Font selectedFace);

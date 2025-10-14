@@ -23,7 +23,21 @@ namespace libslh {
         }
         _selectedFace.configureText(_items[_idx]);
     }
-}
 
+    void Menu::setPosition(sf::Vector2f position) {
+        _position = position;
+    }
 
+    void Menu::arrange() {
+        float totalHeight = 0.0;
+        for (const auto& item : _items) {
+            totalHeight += SPACING_FACTOR * item.getLineSpacing();
+        }
+        sf::Vector2f textPosition
+            = {_position.x, _position.y - (totalHeight / 2)};
+        for (auto& item : _items) {
+            item.setPosition(textPosition);
+            textPosition.y += item.getLineSpacing() * SPACING_FACTOR;
+        }
+    }
 } // namespace libslh
