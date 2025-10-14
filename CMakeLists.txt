@@ -35,6 +35,7 @@ target_sources(
     "${CMAKE_CURRENT_SOURCE_DIR}/src/Engine/Clock.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/Engine/Core.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/Engine/SceneManager.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/Types/Font.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/Utils/Menu.cpp"
 )
 find_package(Doxygen)
