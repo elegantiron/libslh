@@ -16,11 +16,13 @@ namespace libslh {
         std::vector<sf::Text> _items;
         Font                  _defaultFace;
         Font                  _selectedFace;
+        sf::Vector2f          _position{0, 0};
 
         void updateIndex(int delta);
 
     public:
         Menu(Font defaultFace, Font selectedFace);
         void addItem(sf::String& line);
+        void setPosition(sf::Vector2f position);
     };
 }

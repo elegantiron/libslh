@@ -24,3 +24,6 @@ namespace libslh {
         _selectedFace.configureText(_items[_idx]);
     }
 }
+
+
+} // namespace libslh
