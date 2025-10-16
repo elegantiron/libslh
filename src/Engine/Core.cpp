@@ -1,8 +1,5 @@
 #include "libslh/Engine/Core.hpp"
 
-#include <imgui-SFML.h>
-#include <imgui.h>
-
 namespace {
     constexpr int FRAME_LIMIT = 60;
 }
@@ -12,7 +9,6 @@ namespace libslh::Engine {
     void Core::init(sf::VideoMode mode, const sf::String& title,
                     bool& successful) {
         _window.create(mode, title, sf::Style::Titlebar | sf::Style::Close);
-        (void)ImGui::SFML::Init(_window);
         _window.setKeyRepeatEnabled(false);
         _window.setFramerateLimit(FRAME_LIMIT);
 
