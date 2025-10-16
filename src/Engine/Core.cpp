@@ -11,6 +11,7 @@ namespace libslh::Engine {
         _window.create(mode, title, sf::Style::Titlebar | sf::Style::Close);
         _window.setKeyRepeatEnabled(false);
         _window.setFramerateLimit(FRAME_LIMIT);
+        _window.setPosition(sf::Vector2i(0, 0));
 
         successful = true;
     }
