@@ -1,17 +1,10 @@
 #include "libslh/Engine/Core.hpp"
 
-namespace {
-    constexpr int FRAME_LIMIT = 60;
-}
-
 namespace libslh::Engine {
 
     void Core::init(sf::VideoMode mode, const sf::String& title,
                     bool& successful) {
-        _window.create(mode, title, sf::Style::Titlebar | sf::Style::Close);
-        _window.setKeyRepeatEnabled(false);
-        _window.setFramerateLimit(FRAME_LIMIT);
-        _window.setPosition(sf::Vector2i(0, 0));
+        _winMan.init(mode, title);
 
         successful = true;
     }
@@ -52,24 +45,18 @@ namespace libslh::Engine {
                 quit(successful);
                 return;
             }
-            while (std::optional event = _window.pollEvent()) {
+            while (std::optional event = _winMan.pollEvent()) {
                 handleEvent(event, successful, keepRunning);
                 if (!successful || !keepRunning) {
                     quit(successful);
                     return;
                 }
             }
-            _window.clear(_backgroundColor);
-            _window.draw(_sceneMan);
-            _window.display();
+            _winMan.render(_sceneMan);
         }
     }
 
     void Core::quit(bool /*successful*/) {}
-
-    const sf::RenderWindow& Core::getWindow() const {
-        return _window;
-    }
 
     void Core::setNextScene(ScenePtr pScene) {
         _sceneMan.setNextScene(std::move(pScene));

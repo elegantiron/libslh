@@ -2,6 +2,7 @@
 #include "libslh/Engine/Clock.hpp"
 #include "libslh/Engine/RNG.hpp"
 #include "libslh/Engine/SceneManager.hpp"
+#include "libslh/Engine/WindowManager.hpp"
 
 #include <SFML/Graphics.hpp>
 #include <SFML/Window/Event.hpp>
@@ -11,14 +12,13 @@
 namespace libslh::Engine {
     /**
      * @brief Control center for running a game.
-     * 
+     *
      */
     class Core {
         static Core*             _instance;
-        sf::RenderWindow         _window;
         SceneManager             _sceneMan;
+        WindowManager            _winMan;
         Clock                    _clock;
-        sf::Color                _backgroundColor = sf::Color::Black;
         RNG                      _rng;
         boost::locale::generator _gen;
         std::basic_string<char>  _locale;
@@ -28,22 +28,19 @@ namespace libslh::Engine {
         }
 
         void handleEvent();
-        void iterate(const GameTime& gameTime,
-                     bool&           successful,
-                     bool&           keepRunning);
-        void handleEvent(std::optional<sf::Event> event,
-                         bool&                    successful,
-                         bool&                    keepRunning);
+        void iterate(const GameTime& gameTime, bool& successful,
+                     bool& keepRunning);
+        void handleEvent(std::optional<sf::Event> event, bool& successful,
+                         bool& keepRunning);
 
     public:
         static Core&            getInstance();
         const sf::RenderWindow& getWindow() const;
-        void                    init(sf::VideoMode     mode,
-                                     const sf::String& title,
-                                     bool&             successful);
-        void                    setNextScene(ScenePtr pScene);
-        void                    run();
-        void                    quit(bool successful);
+        void init(sf::VideoMode mode, const sf::String& title,
+                  bool& successful);
+        void setNextScene(ScenePtr pScene);
+        void run();
+        void quit(bool successful);
         void setLocalization(sf::String& folder, sf::String& domain);
         [[nodiscard]]
         ScenePtr getCurrentScene() const;
@@ -51,13 +48,14 @@ namespace libslh::Engine {
         std::basic_string<char> localize(
             const boost::locale::basic_message<char>& string);
 
-            /**
-             * @brief Return a random number of type T
-             * 
-             * @tparam T 
-             * @return T 
-             */
-        template <typename T> requires std::integral<T> || std::floating_point<T>
+        /**
+         * @brief Return a random number of type T
+         *
+         * @tparam T
+         * @return T
+         */
+        template <typename T>
+            requires std::integral<T> || std::floating_point<T>
         T next() {
             return next(std::numeric_limits<T>::min(),
                         std::numeric_limits<T>::max());
