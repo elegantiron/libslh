@@ -4,30 +4,6 @@ project(
     VERSION 0.0.1
     LANGUAGES CXX
 )
-include(FetchContent)
-FetchContent_Declare(
-    imgui
-    GIT_REPOSITORY https://github.com/ocornut/imgui.git
-    GIT_TAG v1.91.1
-    GIT_SHALLOW ON
-    EXCLUDE_FROM_ALL
-    SYSTEM
-    
-)
-FetchContent_Declare(
-    imgui-sfml
-    GIT_REPOSITORY https://github.com/SFML/imgui-sfml
-    GIT_TAG v3.0
-    GIT_SHALLOW ON
-    EXCLUDE_FROM_ALL
-    SYSTEM
-)
-FetchContent_MakeAvailable(
-    imgui
-)
-set(IMGUI_DIR ${imgui_SOURCE_DIR})
-set(IMGUI_SFML_FIND_SFML OFF)
-FetchContent_makeAvailable(imgui-sfml)
 add_library(${PROJECT_NAME})
 set_target_properties(
     ${PROJECT_NAME}
@@ -47,12 +23,12 @@ target_include_directories(
     "${CMAKE_CURRENT_SOURCE_DIR}/inc-priv"
 )
 find_package(Boost 1.83 COMPONENTS locale REQUIRED)
+find_package(SFML 3.0 COMPONENTS Graphics REQUIRED)
 target_link_libraries(
     ${PROJECT_NAME}
     PUBLIC
     SFML::Graphics
     Boost::locale
-    ImGui-SFML::ImGui-SFML
 )
 target_sources(
     ${PROJECT_NAME}
