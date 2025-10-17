@@ -22,7 +22,7 @@ namespace libslh::Engine {
         return _window.pollEvent();
     }
 
-    void WindowManager::pollEvent(sf::Event& event) {
+    void WindowManager::pollEvent(std::optional<sf::Event>& event) {
         event = _window.pollEvent();
     }
 }

@@ -21,6 +21,6 @@ namespace libslh::Engine {
         void render(const sf::Drawable& drawable);
         void setBackgroundColor(sf::Color color);
         std::optional<sf::Event> pollEvent();
-        void                     pollEvent(sf::Event& event);
+        void                     pollEvent(std::optional<sf::Event>& event);
     };
 }

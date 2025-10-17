@@ -23,11 +23,13 @@ target_include_directories(
     "${CMAKE_CURRENT_SOURCE_DIR}/inc-priv"
 )
 find_package(Boost 1.83 COMPONENTS locale REQUIRED)
-find_package(SFML 3.0 COMPONENTS Graphics REQUIRED)
+find_package(SFML 3.0 COMPONENTS Graphics CONFIG REQUIRED)
+find_package(SFGUI CONFIG REQUIRED)
 target_link_libraries(
     ${PROJECT_NAME}
     PUBLIC
     SFML::Graphics
+    SFGUI::SFGUI
     Boost::locale
 )
 target_sources(
@@ -36,6 +38,7 @@ target_sources(
     "${CMAKE_CURRENT_SOURCE_DIR}/src/Engine/Clock.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/Engine/Core.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/Engine/SceneManager.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/Engine/WindowManager.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/Types/Font.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/Utils/Menu.cpp"
 )
