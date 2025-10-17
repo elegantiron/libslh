@@ -25,12 +25,16 @@ target_include_directories(
 find_package(Boost 1.83 COMPONENTS locale REQUIRED)
 find_package(SFML 3.0 COMPONENTS Graphics CONFIG REQUIRED)
 find_package(SFGUI CONFIG REQUIRED)
+find_package(MRPT 2.0 COMPONENTS serialization REQUIRED)
+message(STATUS "MRPT_VERSION: ${MRPT_VERSION}")
+message(STATUS "MRPT_LIBRARIES: ${MRPT_LIBRARIES}")
 target_link_libraries(
     ${PROJECT_NAME}
     PUBLIC
     SFML::Graphics
     SFGUI::SFGUI
     Boost::locale
+    ${MRPT_LIBRARIES}
 )
 target_sources(
     ${PROJECT_NAME}
