@@ -1,6 +1,7 @@
 #pragma once
 
-#include "libslh/Types.hpp"
+#include "libslh/Types/GameTime.hpp"
+#include "libslh/Types/TimePoint.hpp"
 
 #include <chrono>
 
