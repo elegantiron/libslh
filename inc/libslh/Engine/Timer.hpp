@@ -48,4 +48,4 @@ namespace libslh::Engine {
         Timer(Timer&&)                = delete;
         ~Timer()                      = default;
     };
-} // namespace SatansLilHelper
+} // namespace libslh::Engine
