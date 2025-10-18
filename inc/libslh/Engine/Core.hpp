@@ -34,6 +34,11 @@ namespace libslh::Engine {
                          bool& keepRunning);
 
     public:
+        Core& operator=(Core&)  = delete;
+        Core& operator=(Core&&) = delete;
+        Core(Core&)             = delete;
+        Core(Core&&)            = delete;
+        ~Core()                 = default;
         static Core&            getInstance();
         const sf::RenderWindow& getWindow() const;
         void init(sf::VideoMode mode, const sf::String& title,
