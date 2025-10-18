@@ -1,5 +1,5 @@
 #pragma once
-#include "libslh/Types.hpp"
+#include "libslh/Types/GameTime.hpp"
 
 #include <SFML/Graphics/Drawable.hpp>
 #include <SFML/Window/Event.hpp>
