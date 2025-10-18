@@ -3,7 +3,7 @@
 #ifdef LIBSLH_USE_BOOST
 #include <boost/serialization/access.hpp>
 #endif
-namespace libslh::Engine {
+namespace libslh {
     class GameTime {
         Duration _totalElapsedTime{0};
         Duration _lastFrame{0};
@@ -21,5 +21,9 @@ namespace libslh::Engine {
             : _totalElapsedTime(totalElapsedTime), _lastFrame(lastFrame) {}
 
         GameTime() = default;
+        [[nodiscard]]
+        const Duration& getLastFrame() const;
+        [[nodiscard]]
+        const Duration& getTotalElapsedTime() const;
     };
-} // namespace libslh::Engine
+} // namespace libslh
