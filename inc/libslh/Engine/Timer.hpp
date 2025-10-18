@@ -17,7 +17,7 @@ namespace libslh::Engine {
     public:
         // Timer(TimerCallback<T> callback, Duration interval);
         void update(const GameTime& gameTime) {
-            update(gameTime.lastFrame);
+            update(gameTime.getLastFrame());
         }
 
         void update(const Duration& elapsedTime) {
