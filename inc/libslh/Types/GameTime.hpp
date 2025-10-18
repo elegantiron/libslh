@@ -19,5 +19,7 @@ namespace libslh::Engine {
     public:
         GameTime(Duration totalElapsedTime, Duration lastFrame)
             : _totalElapsedTime(totalElapsedTime), _lastFrame(lastFrame) {}
+
+        GameTime() = default;
     };
 } // namespace libslh::Engine
