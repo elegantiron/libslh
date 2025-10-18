@@ -1,6 +1,11 @@
 #pragma once
-#include "libslh/Types.hpp"
+#include "libslh/Types/Duration.hpp"
+#include "libslh/Types/GameTime.hpp"
+
 namespace libslh::Engine {
+    template <typename T>
+    using TimerCallback = void (T::*)(bool& runAgain, Duration& nextInterval);
+
     template <typename T>
     class Timer {
         T*               _object;
