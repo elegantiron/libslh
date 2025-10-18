@@ -14,6 +14,8 @@ namespace libslh::Engine {
      * @brief Control center for running a game.
      *
      */
+    // TODO add callbacks for events
+    // TODO enable registering event callbacks
     class Core {
         static Core*             _instance;
         SceneManager             _sceneMan;
