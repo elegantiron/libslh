@@ -25,17 +25,27 @@ target_include_directories(
 find_package(Boost 1.83 COMPONENTS locale REQUIRED)
 find_package(SFML 3.0 COMPONENTS Graphics CONFIG REQUIRED)
 find_package(SFGUI CONFIG REQUIRED)
-find_package(MRPT 2.0 COMPONENTS serialization REQUIRED)
-message(STATUS "MRPT_VERSION: ${MRPT_VERSION}")
-message(STATUS "MRPT_LIBRARIES: ${MRPT_LIBRARIES}")
 target_link_libraries(
     ${PROJECT_NAME}
     PUBLIC
     SFML::Graphics
     SFGUI::SFGUI
     Boost::locale
-    ${MRPT_LIBRARIES}
 )
+find_package(Boost 1.83 COMPONENTS serialization)
+if(boost_serialization_FOUND)
+    message(STATUS "Found boost-serialization")
+    target_link_libraries(
+        ${PROJECT_NAME}
+        PUBLIC
+        Boost::serialization
+    )
+    target_compile_definitions(
+        ${PROJECT_NAME}
+        PUBLIC
+        -DLIBSLH_USE_BOOST
+        )
+endif()
 target_sources(
     ${PROJECT_NAME}
     PUBLIC
