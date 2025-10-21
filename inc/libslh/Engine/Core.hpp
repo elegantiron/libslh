@@ -17,13 +17,10 @@ namespace libslh::Engine {
     // TODO add callbacks for events
     // TODO enable registering event callbacks
     class Core {
-        static Core*             _instance;
-        SceneManager             _sceneMan;
-        WindowManager            _winMan;
-        Clock                    _clock;
-        RNG                      _rng;
-        boost::locale::generator _gen;
-        std::basic_string<char>  _locale;
+        static Core* _instance;
+        Clock        _clock;
+
+        std::basic_string<char> _locale;
 
         Core(std::random_device& dev) : _rng(dev) {
             _locale = _gen("").name();
@@ -41,43 +38,56 @@ namespace libslh::Engine {
         Core(Core&)             = delete;
         Core(Core&&)            = delete;
         ~Core()                 = default;
-        static Core&            getInstance();
-        const sf::RenderWindow& getWindow() const;
-        void init(sf::VideoMode mode, const sf::String& title,
-                  bool& successful);
+        static Core& getInstance();
+        void         init(sf::VideoMode mode, const sf::String& title,
+                          bool& successful);
+        void         run();
+        void         quit(bool successful);
+
+#pragma region Window
+    private:
+        WindowManager _winMan;
+
+    public:
+        sf::Vector2u getWindowSize() const;
+        void         setWindowTitle(const sf::String&);
+        void         setWindowSize(sf::Vector2u);
+#pragma endregion
+#pragma region Scenes
+    private:
+        SceneManager _sceneMan;
+
+    public:
         void setNextScene(ScenePtr pScene);
-        void run();
-        void quit(bool successful);
-        void setLocalization(sf::String& folder, sf::String& domain);
         [[nodiscard]]
         ScenePtr getCurrentScene() const;
+#pragma endregion
+#pragma region RNG
+    private:
+        RNG _rng;
+
+    public:
+        template <typename T>
+            requires std::integral<T> || std::floating_point<T>
+        T getRandom(T min, T max);
+
+#pragma endregion
+#pragma region Localization
+    private:
+        boost::locale::generator _gen;
+
+    public:
+        void setLocalization(sf::String& folder, sf::String& domain);
         [[nodiscard]]
         std::basic_string<char> localize(
             const boost::locale::basic_message<char>& string);
-
-        /**
-         * @brief Return a random number of type T
-         *
-         * @tparam T
-         * @return T
-         */
-        template <typename T>
-            requires std::integral<T> || std::floating_point<T>
-        T next() {
-            return next(std::numeric_limits<T>::min(),
-                        std::numeric_limits<T>::max());
-        }
-
-        template <typename T>
-            requires std::integral<T> || std::floating_point<T>
-        T next(T max) {
-            return next(0, max);
-        }
-
-        template <typename T>
-            requires std::integral<T> || std::floating_point<T>
-        T next(T min, T max) {
-            return _rng.next(min, max);
-        }
+#pragma endregion
     };
+
+    template <>
+    float Core::getRandom(float, float);
+    template <>
+    int Core::getRandom(int, int);
+    template <>
+    double Core::getRandom(double, double);
 } // namespace libslh::Engine
