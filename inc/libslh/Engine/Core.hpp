@@ -27,10 +27,12 @@ namespace libslh::Engine {
         }
 
         void handleEvent();
-        void iterate(const GameTime& gameTime, bool& successful,
-                     bool& keepRunning);
-        void handleEvent(std::optional<sf::Event> event, bool& successful,
-                         bool& keepRunning);
+        void iterate(const GameTime& gameTime,
+                     bool&           successful,
+                     bool&           keepRunning);
+        void handleEvent(std::optional<sf::Event> event,
+                         bool&                    successful,
+                         bool&                    keepRunning);
 
     public:
         Core& operator=(Core&)  = delete;
@@ -39,8 +41,9 @@ namespace libslh::Engine {
         Core(Core&&)            = delete;
         ~Core()                 = default;
         static Core& getInstance();
-        void         init(sf::VideoMode mode, const sf::String& title,
-                          bool& successful);
+        void         init(sf::VideoMode     mode,
+                          const sf::String& title,
+                          bool&             successful);
         void         run();
         void         quit(bool successful);
 
@@ -68,8 +71,11 @@ namespace libslh::Engine {
 
     public:
         template <typename T>
-            requires std::integral<T> || std::floating_point<T>
-        T getRandom(T min, T max);
+        T getRandom();
+        template <typename T>
+        T getRandom(T);
+        template <typename T>
+        T getRandom(T, T);
 
 #pragma endregion
 #pragma region Localization
@@ -84,10 +90,4 @@ namespace libslh::Engine {
 #pragma endregion
     };
 
-    template <>
-    float Core::getRandom(float, float);
-    template <>
-    int Core::getRandom(int, int);
-    template <>
-    double Core::getRandom(double, double);
 } // namespace libslh::Engine
