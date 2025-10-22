@@ -1,6 +1,6 @@
 #pragma once
 
-#include "libslh/Types/Duration.hpp"
+#include "libslh/System/Duration.hpp"
 
 #include <chrono>
 
