@@ -1,6 +1,6 @@
 #pragma once
-#include "libslh/Types/Duration.hpp"
-#include "libslh/Types/GameTime.hpp"
+#include "libslh/System/Duration.hpp"
+#include "libslh/System/GameTime.hpp"
 
 namespace libslh::Engine {
     template <typename T>
