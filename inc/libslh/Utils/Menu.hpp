@@ -1,6 +1,6 @@
 #pragma once
 
-#include "libslh/Types/Font.hpp"
+#include "libslh/Graphics/Font.hpp"
 
 #include <SFML/Graphics/Color.hpp>
 #include <SFML/Graphics/Drawable.hpp>
