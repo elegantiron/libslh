@@ -53,9 +53,9 @@ target_sources(
     "${CMAKE_CURRENT_SOURCE_DIR}/src/Engine/Core.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/Engine/SceneManager.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/Engine/WindowManager.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/Graphics/Font.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/System/GameTime.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/System/Timer.cpp"
-    "${CMAKE_CURRENT_SOURCE_DIR}/src/Types/Font.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/Utils/Menu.cpp"
 )
 find_package(Doxygen)
