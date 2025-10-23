@@ -2,13 +2,30 @@
 
 #include <concepts>
 #include <random>
-
+#ifdef LIBSLH_USE_BOOST
+#include <boost/serialization/access.hpp>
+#endif
 namespace libslh::Engine {
     class RNG {
         std::mt19937_64 _rng;
+#ifdef LIBSLH_USE_BOOST
+        friend class boost::serialization::access;
 
+        template <class Archive>
+        void serialize(Archive& archive, const unsigned int /*version*/) {
+            archive << _rng;
+        }
+#endif
     public:
         RNG(std::random_device& dev) : _rng(dev()) {}
+
+        RNG(std::mt19937_64 rng) : _rng(rng) {}
+
+        RNG(RNG&)                  = default;
+        RNG(RNG&&)                 = default;
+        RNG& operator=(const RNG&) = default;
+        RNG& operator=(RNG&&)      = default;
+        ~RNG()                     = default;
 
         template <typename T>
             requires std::integral<T> || std::floating_point<T>
@@ -20,7 +37,7 @@ namespace libslh::Engine {
         template <typename T>
             requires std::integral<T> || std::floating_point<T>
         T next(T max) {
-            return next<T>(0, max);
+            return next<T>(T(0), max);
         }
 
         template <typename T>
@@ -37,4 +54,4 @@ namespace libslh::Engine {
             return dist(_rng);
         }
     };
-}
+} // namespace libslh::Engine
