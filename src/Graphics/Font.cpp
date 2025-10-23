@@ -1,4 +1,4 @@
-#include "libslh/Types/Font.hpp"
+#include "libslh/Graphics/Font.hpp"
 
 #include <utility>
 
