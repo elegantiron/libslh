@@ -23,8 +23,8 @@ namespace libslh::Engine {
 
         RNG(RNG&)                  = default;
         RNG(RNG&&)                 = default;
-        RNG& operator=(const RNG&) = default;
-        RNG& operator=(RNG&&)      = default;
+        RNG& operator=(const RNG&) = delete;
+        RNG& operator=(RNG&&)      = delete;
         ~RNG()                     = default;
 
         template <typename T>
