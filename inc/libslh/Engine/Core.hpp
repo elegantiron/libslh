@@ -51,8 +51,10 @@ namespace libslh::Engine {
 
     public:
         sf::Vector2u getWindowSize() const;
-        void         setWindowTitle(const sf::String&);
         void         setWindowSize(sf::Vector2u);
+        sf::String   getWindowTitle() const;
+        void         setWindowTitle(const sf::String&);
+
 #pragma endregion
 #pragma region Scenes
     private:

@@ -96,4 +96,23 @@ namespace libslh::Engine {
     template float  Core::getRandom(float);
     template int    Core::getRandom(int);
     template double Core::getRandom(double);
+#pragma region Window
+
+    void Core::setWindowSize(sf::Vector2u size) {
+        _winMan.setSize(size);
+    }
+
+    sf::Vector2u Core::getWindowSize() const {
+        return _winMan.getSize();
+    }
+
+    void Core::setWindowTitle(const sf::String& title) {
+        _winMan.setTitle(title);
+    }
+
+    sf::String Core::getWindowTitle() const {
+        return _winMan.getTitle();
+    }
+
+#pragma endregion
 } // namespace libslh::Engine
