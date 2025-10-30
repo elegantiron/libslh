@@ -10,7 +10,7 @@ namespace {
 
 namespace libslh::Engine {
     class WindowManager {
-        sfg::SFGUI       _sfgui;
+        // sfg::SFGUI       _sfgui;
         sf::RenderWindow _window;
         sf::Color        _backgroundColor;
         sf::String       _title;
