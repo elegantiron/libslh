@@ -32,6 +32,7 @@ namespace libslh {
 
     void Menu::setPosition(sf::Vector2f position) {
         _position = position;
+        arrange();
     }
 
     void Menu::arrange() {
