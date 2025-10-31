@@ -28,5 +28,7 @@ namespace libslh {
         void addItem(const std::basic_string<char>& line);
         void addItem(sf::String& line);
         void setPosition(sf::Vector2f position);
+        void draw(sf::RenderTarget& target,
+                  sf::RenderStates  states) const override;
     };
 }
