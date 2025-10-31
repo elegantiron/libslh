@@ -23,6 +23,9 @@ namespace libslh {
         text.setOutlineThickness(_outlineThickness);
         text.setOutlineColor(_outlineColor);
         text.setStyle(_style);
+        auto localBounds = text.getLocalBounds();
+        text.setOrigin(
+            sf::Vector2f(localBounds.size.x / 2, localBounds.size.y / 2));
     }
 
     Font::operator sf::Font&() {
