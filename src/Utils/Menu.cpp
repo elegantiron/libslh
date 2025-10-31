@@ -37,13 +37,19 @@ namespace libslh {
     void Menu::arrange() {
         float totalHeight = 0.0;
         for (const auto& item : _items) {
-            totalHeight += SPACING_FACTOR * item.getLineSpacing();
+            totalHeight += SPACING_FACTOR * item.getLocalBounds().size.y;
         }
         sf::Vector2f textPosition
             = {_position.x, _position.y - (totalHeight / 2)};
         for (auto& item : _items) {
             item.setPosition(textPosition);
-            textPosition.y += item.getLineSpacing() * SPACING_FACTOR;
+            textPosition.y += item.getLocalBounds().size.y * SPACING_FACTOR;
+        }
+    }
+
+    void Menu::draw(sf::RenderTarget& target, sf::RenderStates states) const {
+        for (const auto& item : _items) {
+            target.draw(item, states);
         }
     }
 } // namespace libslh
