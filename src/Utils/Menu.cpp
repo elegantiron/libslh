@@ -11,6 +11,12 @@ namespace libslh {
 
     void Menu::addItem(sf::String& line) {
         _items.push_back(_defaultFace.createText(line));
+        arrange();
+    }
+
+    void Menu::addItem(const std::basic_string<char>& line) {
+        auto string = sf::String(line);
+        addItem(string);
     }
 
     void Menu::updateIndex(int delta) {
