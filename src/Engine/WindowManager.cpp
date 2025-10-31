@@ -8,7 +8,7 @@ namespace libslh::Engine {
         _title = title;
         _window.create(mode, _title, flags);
         _window.setFramerateLimit(frameRate);
-        _window.setPosition({0, 0});
+        // _window.setPosition({0, 0});
     }
 
     void WindowManager::render(const sf::Drawable& drawable) {
