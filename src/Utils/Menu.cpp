@@ -37,14 +37,16 @@ namespace libslh {
 
     void Menu::arrange() {
         float totalHeight = 0.0;
+        int   itemCount   = 0;
         for (const auto& item : _items) {
             totalHeight += SPACING_FACTOR * item.getLocalBounds().size.y;
+            ++itemCount;
         }
         sf::Vector2f textPosition
             = {_position.x, _position.y - (totalHeight / 2)};
         for (auto& item : _items) {
             item.setPosition(textPosition);
-            textPosition.y += item.getLocalBounds().size.y * SPACING_FACTOR;
+            textPosition.y += totalHeight / (float)itemCount;
         }
     }
 
